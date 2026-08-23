@@ -178,6 +178,12 @@ indoscout/
 
 ## 📄 许可证
 
+
+🔗 姐妹项目
+项目	定位	关系
+IndoScout-D-B（本项目）	B端获客引擎	主动挖掘客户
+Nusantara-Villa	C端转化平台	3D 体验 → 转化成交
+
 MIT License — 可自由使用、修改、商用。
 
 ---
