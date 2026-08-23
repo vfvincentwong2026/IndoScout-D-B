@@ -6,6 +6,10 @@
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![Status: v2.0](https://img.shields.io/badge/Status-v2.0-green.svg)]()
 
+**IndoScout V2 是一个面向印尼高端 Design & Build 市场的 AI 获客工具。输入关键词，自动抓取潜在客户，AI 评分排序，一键 WhatsApp 破冰。**
+
+> **当前状态**：MVP 开发中，预计 2026年10月 可用。
+
 ---
 
 ## 这个系统解决什么问题？
@@ -13,7 +17,7 @@
 印尼巴厘岛、雅加达等地的别墅/豪宅设计施工市场快速增长，但中资与国际化设计施工团队普遍面临三大痛点：
 
 | 痛点 | 传统方式 | IndoScout V2 的做法 |
-|------|----------|---------------------|
+| :--- | :--- | :--- |
 | **获客难** | 盲目扫街、等人介绍、跑展会 | **自动化多源数据抓取**：Google Maps + 官网深度爬取 |
 | **客单价低** | 找到的是竞品承包商或小业主 | **多模态 AI 评分**：直接定位买地投资人、豪宅开发商、高净值业主 |
 | **线索质量差** | 有电话但不知道对方真实需求 | **LLM 深度分析**：识别审美风格、项目体量、交钥匙工程痛点 |
@@ -72,8 +76,9 @@
 
 最终得分由以下权重公式自动计算：
 
-Final Score = S_Style × 0.30 + S_Scale × 0.25 + S_Pain × 0.20 + S_Contact × 0.15 + S_Loc × 0.10
-
+```
+Final Score = Style × 30% + Scale × 25% + Pain × 20% + Contact × 15% + Location × 10%
+```
 
 | 维度 | 权重 | 说明 |
 | :--- | :--- | :--- |
@@ -106,8 +111,8 @@ Final Score = S_Style × 0.30 + S_Scale × 0.25 + S_Pain × 0.20 + S_Contact × 
 
 ```bash
 # 1. 克隆仓库
-git clone https://github.com/your-org/indoscout.git
-cd indoscout
+git clone https://github.com/vfvincentwong2026/IndoScout-D-B.git
+cd IndoScout-D-B
 
 # 2. 安装依赖
 pip install -r requirements.txt
@@ -122,18 +127,24 @@ python src/main.py --mode design_build --query-level S --max 50
 
 # 5. 启动可视化 Web 界面
 streamlit run web/app.py
+```
 
+### Docker 一键部署（推荐生产环境）
 
-Docker 一键部署（推荐生产环境）
-bash
+```bash
 docker build -t indoscout:latest .
 docker run -d --name indoscout \
   -v $PWD/data:/app/data \
   -p 8501:8501 \
   --env-file .env \
   indoscout:latest
-📂 项目结构
-text
+```
+
+---
+
+## 📂 项目结构
+
+```
 indoscout/
 ├── config/
 │   ├── settings.yaml              # 全局配置（API Key、代理池）
@@ -159,7 +170,16 @@ indoscout/
 ├── requirements.txt
 ├── Dockerfile
 └── README.md
-📄 许可证
+```
+
+> 注：部分文件为规划结构，实际开发中会逐步创建。
+
+---
+
+## 📄 许可证
+
 MIT License — 可自由使用、修改、商用。
 
-Made for 印尼高端 Design & Build 市场
+---
+
+**Made for 印尼高端 Design & Build 市场**
