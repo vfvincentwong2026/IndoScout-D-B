@@ -1,0 +1,53 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "updated": "2026-08",
+    "owner": "IndoScout PM",
+    "notes": "分级词库 v1.0。依据：Atelier cases.json（面积中位数 500㎡、8 风格体系）+ 生态定位修正 v1.1。每条 query 标注 target_styles（对齐 Atelier 风格枚举）与 landing_route（破冰落地页路由，见对接PRD 6.1）。",
+    "regions": {
+      "bali": ["Canggu", "Uluwatu", "Pererenan"],
+      "jakarta": ["Menteng", "Pondok Indah", "Pantai Indah Kapuk"]
+    },
+    "style_enum": ["现代", "法式", "法式轻奢", "现代小法", "现代奶油", "侘寂", "意式极简", "tropical_resort"],
+    "style_enum_note": "前 7 项与 Atelier cases.json 一致；tropical_resort 为印尼市场候选第 8 风格，待 Atelier 补案例后启用"
+  },
+  "levels": {
+    "S": {
+      "label": "投资人/开发商/高净值业主",
+      "priority": 1,
+      "queries": [
+        {"q": "investor tanah villa Bali", "lang": "id", "regions": ["bali"], "target_styles": ["tropical_resort", "现代"], "landing_route": "home", "rationale": "买地投资客，体量信号最强"},
+        {"q": "pengembang properti mewah", "lang": "id", "regions": ["bali", "jakarta"], "target_styles": ["现代", "tropical_resort"], "landing_route": "home", "rationale": "豪宅开发商"},
+        {"q": "luxury villa developer Bali", "lang": "en", "regions": ["bali"], "target_styles": ["tropical_resort", "现代"], "landing_route": "home"},
+        {"q": "pengembang villa mewah Canggu", "lang": "id", "regions": ["bali"], "target_styles": ["tropical_resort", "现代"], "landing_route": "home", "rationale": "Canggu 为 Bali 最活跃别墅开发区"},
+        {"q": "luxury residential developer Jakarta", "lang": "en", "regions": ["jakarta"], "target_styles": ["现代", "法式"], "landing_route": "home"},
+        {"q": "private villa owner estate Bali", "lang": "en", "regions": ["bali"], "target_styles": ["tropical_resort", "侘寂"], "landing_route": "home", "rationale": "高净值业主直客"}
+      ]
+    },
+    "A": {
+      "label": "托管公司/精品酒店/商业业主",
+      "priority": 2,
+      "queries": [
+        {"q": "manajemen properti villa Bali", "lang": "id", "regions": ["bali"], "target_styles": ["tropical_resort", "现代"], "landing_route": "upload", "rationale": "托管公司手握大量存量别墅，翻新整装需求直接"},
+        {"q": "villa management company Canggu", "lang": "en", "regions": ["bali"], "target_styles": ["tropical_resort", "现代"], "landing_route": "upload"},
+        {"q": "investor hotel butik Bali", "lang": "id", "regions": ["bali"], "target_styles": ["tropical_resort", "侘寂"], "landing_route": "home", "rationale": "精品酒店投资人，审美预算双高"},
+        {"q": "boutique resort renovation Bali", "lang": "en", "regions": ["bali"], "target_styles": ["tropical_resort", "侘寂"], "landing_route": "upload", "rationale": "明确翻新信号，痛点维度满分候选"},
+        {"q": "luxury guesthouse owner Uluwatu", "lang": "en", "regions": ["bali"], "target_styles": ["tropical_resort"], "landing_route": "upload"}
+      ]
+    },
+    "B": {
+      "label": "建筑师/设计事务所（合作转介）",
+      "priority": 3,
+      "queries": [
+        {"q": "arsitek internasional Bali", "lang": "id", "regions": ["bali"], "target_styles": ["tropical_resort", "意式极简"], "landing_route": "home", "rationale": "海外事务所缺本地落地能力，可合作"},
+        {"q": "desainer interior tropis Bali", "lang": "id", "regions": ["bali"], "target_styles": ["tropical_resort"], "landing_route": "home"},
+        {"q": "tropical architecture firm Bali", "lang": "en", "regions": ["bali"], "target_styles": ["tropical_resort", "现代"], "landing_route": "home"},
+        {"q": "luxury interior design studio Jakarta", "lang": "en", "regions": ["jakarta"], "target_styles": ["现代", "法式轻奢", "意式极简"], "landing_route": "home"}
+      ]
+    }
+  },
+  "negative_signals": {
+    "competitor_keywords": ["kontraktor", "contractor", "jasa bangun", "construction company", "builder"],
+    "note": "命中即 is_competitor 候选，LLM 复核后淘汰——V1 教训：搜到的全是同行"
+  }
+}
